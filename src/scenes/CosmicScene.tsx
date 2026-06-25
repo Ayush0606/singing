@@ -247,7 +247,7 @@ export const CosmicScene: React.FC<CosmicSceneProps> = ({ onNodeClick, isMicActi
               <mesh rotation={[Math.PI / 2, 0, 0]}>
                 <torusGeometry args={[0.8, 0.02, 8, 32]} />
                 <meshBasicMaterial 
-                  color={isVisited ? "#ffd700" : "rgba(160, 32, 240, 0.3)"} 
+                  color={isVisited ? "#ffd700" : "#a020f0"} 
                   transparent
                   opacity={isVisited ? 0.8 : 0.3}
                 />
