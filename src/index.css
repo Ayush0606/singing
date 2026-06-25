@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Theme Colors */
+  --color-bg: #070814;
+  --color-bg-opaque: rgba(7, 8, 20, 0.65);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-glow: rgba(255, 255, 255, 0.15);
+  
+  /* Meadow Theme (Chapter 1) */
+  --color-meadow: #00f3a6;
+  --color-meadow-dark: #00875c;
+  --glow-meadow: 0 0 15px rgba(0, 243, 166, 0.4);
+  --glow-meadow-lg: 0 0 30px rgba(0, 243, 166, 0.6);
+
+  /* Neon City Theme (Chapter 2) */
+  --color-city: #00f0ff;
+  --color-city-accent: #ff007a;
+  --color-city-dark: #005a61;
+  --glow-city: 0 0 15px rgba(0, 240, 255, 0.4);
+  --glow-city-accent: 0 0 15px rgba(255, 0, 122, 0.4);
+  --glow-city-lg: 0 0 30px rgba(0, 240, 255, 0.6);
+
+  /* Cosmic Theme (Chapter 3) */
+  --color-cosmic: #ffd700;
+  --color-cosmic-accent: #a020f0;
+  --color-cosmic-dark: #806000;
+  --glow-cosmic: 0 0 15px rgba(255, 215, 0, 0.4);
+  --glow-cosmic-lg: 0 0 30px rgba(255, 215, 0, 0.6);
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a5c4;
+  --color-text-muted: #626682;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glassmorphism Panel Utilities */
+.glass-panel {
+  background: var(--color-bg-opaque);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--color-border-glow);
+}
+
+/* Specific Chapter Glass Panels */
+.meadow-theme .glass-panel {
+  border-color: rgba(0, 243, 166, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 243, 166, 0.05);
+}
+.meadow-theme .glass-panel:hover {
+  border-color: rgba(0, 243, 166, 0.3);
+}
+
+.city-theme .glass-panel {
+  border-color: rgba(0, 240, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.05);
+}
+.city-theme .glass-panel:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.cosmic-theme .glass-panel {
+  border-color: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.05);
+}
+.cosmic-theme .glass-panel:hover {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+/* HUD elements container */
+.hud-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.interactive {
+  pointer-events: auto;
+}
+
+/* Headings and Typography */
+h1, h2, h3, .brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Typewriter effect container */
+.narration-box {
+  min-height: 80px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+}
+
+.narration-box strong {
+  color: var(--color-text-primary);
+}
+
+/* Premium Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--color-text-primary);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+  border-color: var(--color-text-primary);
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Theme-specific primary buttons */
+.meadow-theme .btn-theme {
+  background: var(--color-meadow);
+  color: var(--color-bg);
+  border-color: var(--color-meadow);
+}
+.meadow-theme .btn-theme:hover {
+  background: #2affc0;
+  box-shadow: var(--glow-meadow);
+}
+
+.city-theme .btn-theme {
+  background: var(--color-city);
+  color: var(--color-bg);
+  border-color: var(--color-city);
+}
+.city-theme .btn-theme:hover {
+  background: #40f7ff;
+  box-shadow: var(--glow-city);
+}
+
+.cosmic-theme .btn-theme {
+  background: var(--color-cosmic);
+  color: var(--color-bg);
+  border-color: var(--color-cosmic);
+}
+.cosmic-theme .btn-theme:hover {
+  background: #ffe34d;
+  box-shadow: var(--glow-cosmic);
+}
+
+/* Slider Customization */
+.custom-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  transition: background 0.3s;
+}
+
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.3s;
+}
+
+.custom-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.meadow-theme .custom-slider::-webkit-slider-thumb {
+  background: var(--color-meadow);
+  box-shadow: var(--glow-meadow);
+}
+.city-theme .custom-slider::-webkit-slider-thumb {
+  background: var(--color-city);
+  box-shadow: var(--glow-city);
+}
+.cosmic-theme .custom-slider::-webkit-slider-thumb {
+  background: var(--color-cosmic);
+  box-shadow: var(--glow-cosmic);
+}
+
+/* Radial Gradient Overlay to give depths behind 3D Canvas */
+.canvas-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 30%, rgba(7, 8, 20, 0.8) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Microphone pulse circle indicator */
+.mic-pulse-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ff3366;
+  display: inline-block;
+  animation: pulse 1.5s infinite ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.6);
+}
+
+.mic-pulse-indicator.active {
+  background: var(--color-meadow);
+  box-shadow: var(--glow-meadow);
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+}
+
+.animate-glow-pulse {
+  animation: pulse 3s infinite ease-in-out;
+}
+
+/* Chapter Title Reveal Styling */
+.chapter-title-overlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: none;
+  text-align: center;
+  opacity: 0;
+  animation: titleReveal 4s ease forwards;
+}
+
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -45%) scale(0.95);
+    filter: blur(10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(0px);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -55%) scale(1.05);
+    filter: blur(10px);
+  }
+}
+
+.text-glow-meadow {
+  text-shadow: var(--glow-meadow-lg);
+  color: var(--color-meadow);
+}
+.text-glow-city {
+  text-shadow: var(--glow-city-lg);
+  color: var(--color-city);
+}
+.text-glow-cosmic {
+  text-shadow: var(--glow-cosmic-lg);
+  color: var(--color-cosmic);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
