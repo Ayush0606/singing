@@ -76,13 +76,7 @@ export const StoryHUD: React.FC<StoryHUDProps> = ({
     <div className={`hud-layer ${chapter === 1 ? 'meadow-theme' : chapter === 2 ? 'city-theme' : 'cosmic-theme'}`}>
       
       {/* Top Header Overlay */}
-      <header className="interactive glass-panel" style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '12px 24px',
-        width: '100%'
-      }}>
+      <header className="interactive glass-panel hud-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <Music className="animate-glow-pulse" style={{
             color: chapter === 1 ? 'var(--color-meadow)' : chapter === 2 ? 'var(--color-city)' : 'var(--color-cosmic)'
@@ -120,10 +114,10 @@ export const StoryHUD: React.FC<StoryHUDProps> = ({
         </div>
 
         {/* Global Settings Panel */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div className="hud-settings">
           
           {/* Master Volume */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div className="hud-volume-control">
             <Volume2 size={18} style={{ color: 'var(--color-text-secondary)' }} />
             <input
               type="range"
@@ -138,7 +132,7 @@ export const StoryHUD: React.FC<StoryHUDProps> = ({
           </div>
 
           {/* Microphone Controller */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div className="hud-mic-control">
             <button 
               onClick={toggleMic} 
               className={`btn ${isMicActive ? 'btn-theme' : ''}`}
@@ -203,18 +197,9 @@ export const StoryHUD: React.FC<StoryHUDProps> = ({
       )}
 
       {/* Bottom Interface HUD Overlay */}
-      <footer style={{
-        display: 'grid',
-        gridTemplateColumns: '2fr 1fr',
-        gap: '24px',
-        width: '100%',
-        alignItems: 'end'
-      }}>
+      <footer className="hud-footer">
         {/* Story Text Box */}
-        <div className="interactive glass-panel" style={{
-          padding: '24px',
-          flex: 1
-        }}>
+        <div className="interactive glass-panel hud-story-box">
           <div style={{
             fontSize: '0.8rem',
             textTransform: 'uppercase',
@@ -265,13 +250,7 @@ export const StoryHUD: React.FC<StoryHUDProps> = ({
         </div>
 
         {/* Dynamic Vowel Timbre Vocoder Control */}
-        <div className="interactive glass-panel" style={{
-          padding: '24px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-          minWidth: '240px'
-        }}>
+        <div className="interactive glass-panel hud-vocoder-box">
           <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-secondary)' }}>
             Vocal Vowel Timbre:
           </div>

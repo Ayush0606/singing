@@ -361,3 +361,170 @@ h1, h2, h3, .brand {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* --- RESPONSIVE LAYOUT CLASSES --- */
+
+.hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  width: 100%;
+}
+
+.hud-settings {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hud-volume-control, .hud-mic-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud-footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  width: 100%;
+  align-items: end;
+}
+
+.hud-story-box {
+  padding: 24px;
+  flex: 1;
+}
+
+.hud-vocoder-box {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 240px;
+}
+
+/* --- MEDIA QUERIES FOR FULL RESPONSIVENESS --- */
+
+@media (max-width: 1024px) {
+  .hud-footer {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hud-layer {
+    padding: 12px;
+    height: 100%;
+    overflow-y: auto;
+    justify-content: flex-start;
+    gap: 16px;
+    pointer-events: auto;
+  }
+
+  /* Header adjustments */
+  .hud-header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .hud-header > div {
+    justify-content: center;
+  }
+
+  .hud-settings {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hud-volume-control {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hud-volume-control input[type="range"] {
+    width: 50% !important;
+    max-width: 120px;
+  }
+
+  .hud-mic-control {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer adjustments */
+  .hud-footer {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+    margin-top: auto; /* push to bottom in flex container */
+  }
+
+  .hud-story-box {
+    padding: 16px;
+  }
+
+  .hud-vocoder-box {
+    padding: 16px;
+    min-width: unset;
+    width: 100%;
+  }
+
+  /* Visualizer height reduction so it doesn't overlap text too much */
+  canvas[style*="height: 180px"] {
+    height: 100px !important;
+  }
+
+  /* Reduce typography sizing */
+  h1 {
+    font-size: 2.2rem !important;
+  }
+  .chapter-title-overlay h2 {
+    font-size: 2.0rem !important;
+  }
+  .narration-box {
+    font-size: 0.95rem;
+    min-height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hud-layer {
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .hud-header {
+    padding: 10px 8px;
+  }
+
+  .hud-footer {
+    gap: 10px;
+  }
+
+  .hud-story-box, .hud-vocoder-box {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .chapter-title-overlay h2 {
+    font-size: 1.6rem !important;
+  }
+}
