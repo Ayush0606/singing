@@ -216,36 +216,60 @@ export const StoryHUD: React.FC<StoryHUDProps> = ({
             <TypewriterText text={narration} />
           </div>
 
-          {/* Chapter Navigation Buttons */}
-          <div style={{ display: 'flex', gap: '12px' }}>
-            <button
-              onClick={() => setChapter(Math.max(1, chapter - 1) as 1 | 2 | 3)}
-              disabled={chapter === 1}
-              className="btn"
-              style={{ opacity: chapter === 1 ? 0.3 : 1, cursor: chapter === 1 ? 'not-allowed' : 'pointer' }}
-            >
-              <ChevronLeft size={16} />
-              <span>Back</span>
-            </button>
-
-            {chapter < 3 ? (
+          {/* Controls Row (Navigation + Mobile Vowels) */}
+          <div className="hud-controls-row">
+            {/* Chapter Navigation Buttons */}
+            <div style={{ display: 'flex', gap: '12px' }}>
               <button
-                onClick={() => setChapter(Math.min(3, chapter + 1) as 1 | 2 | 3)}
-                className="btn btn-primary"
-              >
-                <span>Continue Journey</span>
-                <ChevronRight size={16} />
-              </button>
-            ) : (
-              <button
-                onClick={onRestart}
+                onClick={() => setChapter(Math.max(1, chapter - 1) as 1 | 2 | 3)}
+                disabled={chapter === 1}
                 className="btn"
-                style={{ borderColor: 'rgba(255,255,255,0.1)' }}
+                style={{ opacity: chapter === 1 ? 0.3 : 1, cursor: chapter === 1 ? 'not-allowed' : 'pointer' }}
               >
-                <RefreshCw size={14} />
-                <span>Reset Story</span>
+                <ChevronLeft size={16} />
+                <span>Back</span>
               </button>
-            )}
+
+              {chapter < 3 ? (
+                <button
+                  onClick={() => setChapter(Math.min(3, chapter + 1) as 1 | 2 | 3)}
+                  className="btn btn-primary"
+                >
+                  <span>Continue Journey</span>
+                  <ChevronRight size={16} />
+                </button>
+              ) : (
+                <button
+                  onClick={onRestart}
+                  className="btn"
+                  style={{ borderColor: 'rgba(255,255,255,0.1)' }}
+                >
+                  <RefreshCw size={14} />
+                  <span>Reset Story</span>
+                </button>
+              )}
+            </div>
+
+            {/* Compact Mobile Vowel Selector */}
+            <div className="mobile-vowel-selector">
+              {(['a', 'o', 'i', 'u'] as const).map((vow) => (
+                <button
+                  key={vow}
+                  onClick={() => handleVowelChange(vow)}
+                  className={`btn ${activeVowel === vow ? 'btn-theme' : ''}`}
+                  style={{
+                    padding: '8px 12px',
+                    fontSize: '0.85rem',
+                    borderRadius: '8px',
+                    textTransform: 'uppercase',
+                    minWidth: '38px',
+                    height: '38px'
+                  }}
+                >
+                  {vow}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

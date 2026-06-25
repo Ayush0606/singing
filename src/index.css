@@ -405,6 +405,22 @@ h1, h2, h3, .brand {
   min-width: 240px;
 }
 
+.hud-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.mobile-vowel-selector {
+  display: none;
+  gap: 6px;
+  align-items: center;
+}
+
 /* --- MEDIA QUERIES FOR FULL RESPONSIVENESS --- */
 
 @media (max-width: 1024px) {
@@ -473,9 +489,11 @@ h1, h2, h3, .brand {
   }
 
   .hud-vocoder-box {
-    padding: 16px;
-    min-width: unset;
-    width: 100%;
+    display: none !important;
+  }
+
+  .mobile-vowel-selector {
+    display: flex !important;
   }
 
   /* Visualizer height reduction so it doesn't overlap text too much */
